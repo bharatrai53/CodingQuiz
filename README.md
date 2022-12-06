@@ -8,3 +8,6 @@ Start the quiz by pressing the 'start' button at the beginning of the landing pa
 
 ## Screenshot
 ![My Work](./Assets/codingQuiz.png?raw=true "codingQuiz")
+
+## Deployed Link
+https://bharatrai53.github.io/CodingQuiz/
