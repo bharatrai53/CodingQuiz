@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Password Generator</title>
+    <title>Coding Quiz</title>
     <link rel="stylesheet" href="./Assets/style.css" />
   </head>
 
   <body>
     <header>
-        <h4 class="highScore" data-state="hidden">View HighScores</h4>
+        <h4 class="scoreList" data-state="hidden">View HighScores</h4>
         <h4 class="timer">Time Left: <span id="countdown"></span></h4>
     </header>
     <h1 id="main">Coding Quiz Challenge</h1>
@@ -19,6 +19,12 @@
     
     <ul id="answers"></ul>
 
+    <form class="userInputs">
+      <p id ="userPrompt">Please enter your intials and submit: </p>
+      <textarea id="userName" rows="1" cols="5"></textarea>
+      <button id="submitScore">Submit Score</button>
+    </form>
+    
     <form class="buttonBox">
         <button id="start">Start</button>
     </form>

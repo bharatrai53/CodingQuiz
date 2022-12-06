@@ -3,12 +3,12 @@
     background: #f1faf0;
 }
 
-.highScore {
-    color:rgb(12, 182, 63);
+.scoreList {
+    color:rgb(108, 3, 92);
 }
 
-.highScore:hover {
-    color: blue;
+.scoreList:hover {
+    color: rgb(198, 156, 191);
     cursor: pointer;
   }
 
@@ -24,7 +24,6 @@
 }
   #start {
     display:block;
-    text-align: center;
     border-radius: 12px;
     padding: 3px 18px;
     font-size: 23px;
@@ -80,7 +79,46 @@
     color:white;
 }
 
+.userInputs{
+  flex: 0 0 100%;
+  justify-content: center;
+}
 
+#userPrompt {
+  display: none;
+  text-align: center;
+  font-size: 40%;
+}
+
+
+textarea {
+  display: none;
+  text-align: center;
+  width: 130px;
+  height: 15px;
+  margin: auto;
+  border-radius: 12px;
+  background-color: rgb(226, 235, 253);
+  color: #071360;
+}
+
+button {
+  display: none;
+  border-radius: 12px;
+  padding: 3px 18px;
+  margin: auto;
+  font-size: 23px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+#submitScore:hover{
+  size: 200%;
+  background-color:rgb(108, 3, 92);
+  color:white;
+  border-color: aliceblue;
+ 
+}
   /* .disabled {
   opacity: 0.6;
   cursor: not-allowed;
