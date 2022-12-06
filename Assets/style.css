@@ -46,11 +46,6 @@
         margin-top: 200px;
   }
 
-  .inTest {
-    background-color:#333333; 
-    margin-top: 20px;
-  }
-
   #titleDesc {
     flex: 0 0 50%;
         text-align: center;

@@ -1,4 +1,4 @@
-var testQuestions = ["Commonly used Data Types Include:", "Arrays in JavaScript can be used to Store:", "Coding is Fun", "I am hungry"];
+var testQuestions = ["Commonly used Data Types Include:", "Arrays in JavaScript can be used to Store:", "A Value can be Saved to Local Storage", "Coding is Fun"];
 var testAnswersOne = ["strings", "numbers", "booleans", "all of the above"];
 var testAnswersTwo = ["strings", "cats", "dogs"];
 var testAnswersThree = ["True", "False"];
@@ -13,7 +13,7 @@ var answerSelection = document.querySelector('ul');
 var userNameInput = document.querySelector('textarea');
 var submitScore = document.querySelector('#submitScore');
 var questionIndex = 0;
-var timeLeft = 10;
+var timeLeft = 30;
 
 var questions = [
   {
@@ -47,7 +47,15 @@ var questions = [
   }
 ];
 
+//initialize save user details/score object
+var userDetails = [
+  {
+    userName: userNameInput.value,
+    userScore: timeLeft
+  }
+];
 
+//inital start button
 start.addEventListener('click', function (event) {
   event.preventDefault();
   countdown();
@@ -68,9 +76,7 @@ scoreList.addEventListener('click', function (event) {
   document.querySelector('#submitScore').remove();
   document.querySelector('#start').remove();
   
-  var displayScoreList = scoreList
   displayUserScore();
-  userSubmit.setAttribute("style", "display: block");
 });
 
 function countdown() {
@@ -109,6 +115,7 @@ function countdown() {
 }
 
 function displayQuestion() {
+  scoreList.setAttribute("style", "cursor: not-allowed");
   document.getElementById('answers').innerHTML = "";
   start.remove();
   contentEl.remove();
@@ -129,19 +136,19 @@ function displayAnswers() {
   }
 }
 
+//dynamically proceses answer selection for right answers, wrong answer, end of the game
 answerSelection.addEventListener('click', function (event) {
   console.table(questions[questionIndex])
   if (event.target.matches("li")) {
+    //logic for right answer
     if (event.target.textContent === questions[questionIndex].answers.correct) {
       rightAnswer();
       questions[questionIndex - 1].answers.choices.remove();
     }
+    //logic for wrong answer
     else if (event.target.textContent !== questions[questionIndex].answers.correct) {
       wrongAnswer();
       document.getElementById("p").style.display = "none";
-    }
-    else {
-      endGame();
     }
   }
 });
@@ -180,25 +187,33 @@ function endGame() {
   titleScore.append(score);
   
   //handle user initals
+  //prompt to ask user for initals 
   var userPrompt = document.getElementById("userPrompt");
   userPrompt.style.display = "block";
   score.appendChild(userPrompt);
-
+  //get the user initals 
   var userInitials = document.getElementById("userName");
   userInitials.style.display = "block";
-  userInitials.innerText = userNameInput.value;
+  userInitials.textContent = userNameInput.value;
   score.appendChild(userInitials);
 
   //handle user submit button
   var userSubmit = document.getElementById("submitScore");
   userSubmit.setAttribute("style", "display: block");
-  var userDetails =
-    {
-      userName: userNameInput.value,
-      userScore: score
-    }
 
-  //save score
+  var userDetails = [
+    {
+      userName: userInitials,
+      userScore: timeLeft
+    }
+  ];
+  
+  function saveUserScore() {
+    scoreList.textContent = userDetails;
+    localStorage.setItem('userDetails', JSON.stringify(userDetails));
+    console.table(userDetails);
+  }
+  //save score after user presses submit score
   submitScore.addEventListener('click', function (event) {
     event.preventDefault();
     var element = event.target;
@@ -212,11 +227,7 @@ function endGame() {
   });
 }
 
-function saveUserScore() {
-  scoreList.textContent = userDetails;
-  localStorage.setItem('userDetails', JSON.stringify(userDetails));
-  console.table(userDetails);
-}
+
 
 function displayUserScore() {
   var retrievedUser = JSON.parse(localStorage.getItem('userDetails'));
